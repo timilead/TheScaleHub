@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Complete! | SalesGrowth Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Print styles for certificate */
+    @media print {
+      .navbar, .footer, .btn { display: none !important; }
+      .completion-page { padding: 0; background: white; }
+      .certificate { box-shadow: none; border: 2px solid #1a2a6c; }
+    }
+  </style>
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S6SFWM5XB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1S6SFWM5XB');
+</script>
+</head>
+<body>
+  <!-- ========== NAVBAR ========== -->
+  <div id="navbar"></div>
+  <!-- ========== CERTIFICATE CONTENT ========== -->
+  <div class="completion-page" id="certificateContent">
+    <!-- Certificate rendered by JavaScript -->
+    <div class="certificate">
+      <p>Loading certificate...</p>
+    </div>
+  </div>
+  <!-- ========== FOOTER ========== -->
+  <div id="footer"></div>
+  <!-- ========== SCRIPTS ========== -->
+  <script src="course-data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    renderNavbar('complete');
+    renderCertificate();
+    renderFooter();
+  </script>
+</body>
+</html>

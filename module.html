@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module | SalesGrowth Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1S6SFWM5XB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1S6SFWM5XB');
+</script>
+</head>
+<body>
+  <!-- ========== NAVBAR ========== -->
+  <div id="navbar"></div>
+  <!-- ========== LESSON HEADER ========== -->
+  <section class="lesson-header" id="moduleHeader">
+    <div class="container-narrow">
+      <div class="breadcrumb">
+        <a href="dashboard.html">Dashboard</a> &nbsp;/&nbsp; Module
+      </div>
+      <h1>Loading Module...</h1>
+    </div>
+  </section>
+  <!-- ========== LESSON CONTENT & QUIZ ========== -->
+  <div id="lessonContent">
+    <!-- Content rendered by JavaScript -->
+    <div class="container-narrow" style="padding: 3rem 1.5rem; text-align: center;">
+      <p>Loading module content...</p>
+    </div>
+  </div>
+  <!-- ========== FOOTER ========== -->
+  <div id="footer"></div>
+  <!-- ========== SCRIPTS ========== -->
+  <script src="app.js"></script>
+  <script src="course-data.js"></script>
+  <script>
+    renderNavbar('module');
+    renderModule();
+    renderFooter();
+  </script>
+</body>
+</html>
