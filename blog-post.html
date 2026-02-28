@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post | TheScaleHub</title>
+  <meta name="description" content="Read full blog post on TheScaleHub.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .blog-post-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+      color: white;
+      padding: 3rem 1.5rem 2.5rem;
+    }
+    .blog-post-hero .breadcrumb {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1rem;
+    }
+    .blog-post-hero .breadcrumb a {
+      color: rgba(255,255,255,0.85);
+      transition: var(--transition);
+    }
+    .blog-post-hero .breadcrumb a:hover { color: white; }
+    .blog-post-hero h1 {
+      color: white;
+      font-size: 2.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .blog-post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+    }
+    .blog-post-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .blog-post-cover {
+      max-width: 800px;
+      margin: -1.5rem auto 0;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .blog-post-cover img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .blog-post-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+    .blog-post-content {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--gray-700);
+    }
+    .blog-post-content p {
+      margin-bottom: 1.35rem;
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+    .blog-post-content h2 {
+      font-size: 1.5rem;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-200);
+      color: var(--gray-900);
+    }
+    .blog-post-content h3 {
+      font-size: 1.2rem;
+      margin: 1.75rem 0 0.75rem;
+      color: var(--primary);
+    }
+    .blog-post-content ul,
+    .blog-post-content ol {
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+    .blog-post-content ul { list-style: disc; }
+    .blog-post-content ol { list-style: decimal; }
+    .blog-post-content li {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--gray-700);
+    }
+    .blog-post-content blockquote {
+      border-left: 4px solid var(--accent);
+      background: var(--gray-50);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--gray-600);
+    }
+    .blog-post-content a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .blog-post-content a:hover {
+      color: var(--accent-hover);
+    }
+    .blog-post-external {
+      background: var(--gray-50);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .blog-post-external p {
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .blog-post-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--gray-200);
+    }
+    .blog-post-share {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .blog-post-share span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+    .share-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .share-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .blog-post-loading {
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .blog-post-error {
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .blog-post-error h2 { margin-bottom: 0.5rem; }
+    .blog-post-error p { color: var(--gray-500); }
+    @media (max-width: 768px) {
+      .blog-post-hero h1 { font-size: 1.65rem; }
+      .blog-post-body { padding: 2rem 1.25rem 3rem; }
+      .blog-post-content { font-size: 1rem; }
+      .blog-post-content p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <!-- Post content loaded dynamically -->
+  <div id="blogPostContainer">
+    <div class="blog-post-loading">
+      <div class="spinner-sm"></div>
+      <p style="margin-top:1rem;color:var(--gray-500);">Loading post...</p>
+    </div>
+  </div>
+  <div id="footer"></div>
+  <!-- ========== SCRIPTS ========== -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="modules-data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    renderNavbar('blog');
+    renderFooter();
+    function loadPostWhenReady() {
+      if (!firebaseReady || !auth) {
+        renderFullBlogPost();
+        return;
+      }
+      auth.onAuthStateChanged(function() {
+        renderFullBlogPost();
+      });
+      setTimeout(function() {
+        const container = document.getElementById('blogPostContainer');
+        if (container && container.querySelector('.blog-post-loading')) {
+          renderFullBlogPost();
+        }
+      }, 3000);
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(loadPostWhenReady, 100);
+      });
+    } else {
+      setTimeout(loadPostWhenReady, 100);
+    }
+  </script>
+</body>
+</html>
