@@ -107,11 +107,42 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="modules-data.js"></script>
   <script src="app.js"></script>
-  <script>
+ <script>
     renderNavbar('blog');
     renderFooter();
-    // Load blog posts after a short delay for Firebase init
-    setTimeout(() => renderBlogPosts('blogGrid'), 500);
+    /**
+     * Wait for Firebase to fully initialize, then load blog posts.
+     * This replaces the unreliable setTimeout approach.
+     */
+    function loadBlogWhenReady() {
+      // If Firebase is not configured, render immediately (shows "coming soon")
+      if (!firebaseReady || !auth) {
+        renderBlogPosts('blogGrid');
+        return;
+      }
+      // Wait for Firebase Auth to resolve (confirms Firestore is also ready)
+      auth.onAuthStateChanged(function() {
+        console.log('Blog: Firebase auth resolved, loading posts...');
+        renderBlogPosts('blogGrid');
+      });
+      // Safety net: if auth state never fires, load after 3 seconds anyway
+      setTimeout(function() {
+        const grid = document.getElementById('blogGrid');
+        if (grid && grid.querySelector('.blog-loading')) {
+          console.warn('Blog: Auth state took too long, force-loading posts...');
+          renderBlogPosts('blogGrid');
+        }
+      }, 3000);
+    }
+    // Firebase initializes on DOMContentLoaded, so we wait a tick for it
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(loadBlogWhenReady, 100);
+      });
+    } else {
+      // DOM already loaded, Firebase should be initializing
+      setTimeout(loadBlogWhenReady, 100);
+    }
   </script>
 </body>
 </html>
